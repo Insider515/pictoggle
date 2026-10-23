@@ -1,0 +1,83 @@
+{
+  "name": "pictoggle",
+  "version": "1.0.0",
+  "description": "Zero-dependency image checkbox. Any PNG/SVG/WebP/GIF becomes a toggle: full colour when checked, grayscale when not. Ships as a form-associated <pic-toggle> custom element that behaves like a native <input type=\"checkbox\"> (FormData, required, reset, back/forward restore, fieldset disabled, labels), and as a createPicToggle() factory for plain JS. Indeterminate, slots, RTL, reduced-motion, forced-colors and print are all supported out of the box.",
+  "type": "module",
+  "main": "./src/pictoggle.js",
+  "module": "./src/pictoggle.js",
+  "types": "./src/pictoggle.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/pictoggle.d.ts",
+      "import": "./src/pictoggle.js",
+      "default": "./src/pictoggle.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "docs",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "llms.txt"
+  ],
+  "scripts": {
+    "test": "node --test test/pictoggle.test.js test/browser.test.js",
+    "test:unit": "node --test test/pictoggle.test.js",
+    "test:browser": "node --test test/browser.test.js",
+    "prepublishOnly": "npm run test:unit"
+  },
+  "keywords": [
+    "checkbox",
+    "pic-toggle",
+    "image",
+    "picture",
+    "svg",
+    "png",
+    "webp",
+    "icon",
+    "toggle",
+    "grayscale",
+    "web-component",
+    "custom-element",
+    "form-associated",
+    "form-associated-custom-element",
+    "ElementInternals",
+    "shadow-dom",
+    "indeterminate",
+    "a11y",
+    "accessible",
+    "aria",
+    "no-dependencies",
+    "zero-dependencies",
+    "vanilla",
+    "framework-agnostic",
+    "react",
+    "vue",
+    "svelte",
+    "form",
+    "input",
+    "ui",
+    "control"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Insider515/pictoggle.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Insider515/pictoggle/issues"
+  },
+  "homepage": "https://github.com/Insider515/pictoggle#readme",
+  "engines": {
+    "node": ">=18"
+  },
+  "sideEffects": [
+    "./src/pictoggle.js"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

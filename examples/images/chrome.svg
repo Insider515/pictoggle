@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="241px" height="241px" viewBox="0 0 241 241" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>chrome</title>
+    <defs>
+        <linearGradient x1="74.83%" y1="95.933%" x2="19.807%" y2="-4.067%" id="linearGradient-1">
+            <stop stop-color="#1E8E3E" offset="0%"></stop>
+            <stop stop-color="#34A853" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="22.97%" y1="95.836%" x2="61.462%" y2="-4.169%" id="linearGradient-2">
+            <stop stop-color="#FCC934" offset="0%"></stop>
+            <stop stop-color="#FBBC04" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="linearGradient-3">
+            <stop stop-color="#D93025" offset="0%"></stop>
+            <stop stop-color="#EA4335" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="chrome" transform="translate(0.5, 0.5)" fill-rule="nonzero">
+            <g id="Group">
+                <path d="M120,180 C98.08,180 78.907,168.243 68.438,150.692 C68.152,150.212 67.873,149.729 67.6,149.242 L16.077,60 L16.067,59.984 L16.057,60 C5.848,77.65 0,98.142 0,120 C0,186.274 53.726,240 120,240 L171.562,150.692 C161.092,168.242 141.921,180 120,180 Z" id="Path" fill="url(#linearGradient-1)"></path>
+                <path d="M223.942,60 L120,60 C153.137,60 180,86.863 180,120 C180,130.618 177.238,140.589 172.4,149.241 C172.127439,149.728215 171.848078,150.211596 171.562,150.691 L120,240 C186.274,240 240,186.274 240,120 C240,98.142 234.153,77.65 223.942,60 Z" id="Path" fill="url(#linearGradient-2)"></path>
+                <path d="M223.933,59.984 C203.18,24.126 164.409,0 120,0 C75.59,0 36.819,24.126 16.067,59.984 L16.077,60 L67.6,149.241 C62.762,140.59 60,130.618 60,120 C60,86.863 86.863,60 120,60 L223.943,60 L223.933,59.984 Z" id="Path" fill="url(#linearGradient-3)"></path>
+                <path d="M180,120 C180,86.863 153.137,60 120,60 C86.863,60 60,86.863 60,120 C60,130.618 62.762,140.589 67.6,149.241 L68.438,150.691 C78.908,168.244 98.079,180 120,180 C141.92,180 161.093,168.243 171.562,150.692 L172.4,149.242 C177.238,140.589 180,130.618 180,120 L180,120 Z" id="Path" fill="#FFFFFF"></path>
+                <path d="M169.20005,120 C169.20005,92.828 147.172,70.8 120,70.8 C92.828,70.8 70.7999488,92.828 70.7999488,120 C70.7878612,128.394699 72.9338657,136.651582 77.032,143.978 L77.719,145.168 C86.304,159.557 102.025,169.2 120,169.2 C137.975,169.2 153.696,159.559 162.28,145.167 L162.968,143.977 C167.065968,136.650877 169.211967,128.39436 169.20005,120 L169.20005,120 Z" id="Path" fill="#1A73E8"></path>
+            </g>
+        </g>
+    </g>
+</svg>

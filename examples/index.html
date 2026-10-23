@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>pic-toggle — demo</title>
+  <style>
+    body { font: 15px/1.4 system-ui, sans-serif; margin: 2rem; max-width: 1800px; }
+    section { margin-bottom: 2rem; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; }
+    h2 { margin: 0 0 1rem; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; }
+    .row { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: flex-start; }
+    pre { background: #f5f5f5; padding: 0.75rem; border-radius: 6px; overflow: auto; }
+    /* Two-column layout on wide screens, single column on narrow ones. */
+    .layout { display: grid; grid-template-columns: 1fr; gap: 0 2rem; align-items: start; }
+    @media (min-width: 1100px) { .layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+    .layout > .col > section:last-child { margin-bottom: 0; }
+  </style>
+</head>
+<body>
+  <h1>pic-toggle demo</h1>
+
+  <div class="layout">
+  <div class="col">
+  <section>
+    <h2>Web Component — label positions</h2>
+    <div class="row">
+      <pic-toggle src="images/chrome.svg"  label="Chrome"  label-position="right"  size="64"></pic-toggle>
+      <pic-toggle src="images/firefox.svg" label="Firefox" label-position="left"   size="64"></pic-toggle>
+      <pic-toggle src="images/safari.svg"  label="Safari"  label-position="top"    size="64"></pic-toggle>
+      <pic-toggle src="images/edge.svg"    label="Edge"    label-position="bottom" size="64"></pic-toggle>
+      <pic-toggle src="images/opera.svg"                   label-position="none"   size="64"></pic-toggle>
+    </div>
+  </section>
+
+  <section>
+    <h2>Different sizes, initial states and extra attributes (form submission, reset)</h2>
+    <form id="demo-form" class="row">
+      <pic-toggle src="images/avatar1.webp" label="Alice"    size="48" name="team" value="alice"  checked></pic-toggle>
+      <pic-toggle src="images/avatar2.webp" label="Bob"      size="64" name="team" value="bob"></pic-toggle>
+      <pic-toggle src="images/avatar3.webp" label="Carol"    size="80" name="team" value="carol"  data-tier="pro"></pic-toggle>
+      <pic-toggle src="images/avatar4.webp" label="Dave (disabled)" size="48" disabled></pic-toggle>
+      <pic-toggle src="images/avatar1.webp" label="I agree to the terms" size="48" name="agree" value="yes" required></pic-toggle>
+    </form>
+    <div class="row" style="margin-top:1rem">
+      <button type="submit" form="demo-form">Submit</button>
+      <button type="reset" form="demo-form">Reset</button>
+    </div>
+    <pre id="form-output">(toggle a checkbox or submit the form)</pre>
+  </section>
+
+  <section>
+    <h2>Programmatic API</h2>
+    <div id="api-mount" class="row"></div>
+  </section>
+
+  <section>
+    <h2>Indeterminate state</h2>
+    <div class="row">
+      <pic-toggle id="parent" src="images/Ubuntu.png"  label="Ubuntu (parent — click SUSE/Windows to see mixed state)" size="64" indeterminate></pic-toggle>
+      <pic-toggle id="child1" src="images/SUSE.png"    label="SUSE"    size="64" checked></pic-toggle>
+      <pic-toggle id="child2" src="images/Windows.png" label="Windows" size="64"></pic-toggle>
+    </div>
+    <script>
+      // Classic "select all / none" tri-state: parent reflects children.
+      // Wait for the Web Component to upgrade before touching .checked /
+      // .indeterminate, so our writes go through the real setters.
+      customElements.whenDefined('pic-toggle').then(() => {
+        const parent = document.getElementById('parent');
+        const kids = [document.getElementById('child1'), document.getElementById('child2')];
+        const update = () => {
+          const n = kids.filter(k => k.checked).length;
+          parent.checked = n === kids.length;
+          parent.indeterminate = n > 0 && n < kids.length;
+        };
+        kids.forEach(k => k.addEventListener('change', update));
+        parent.addEventListener('change', () => kids.forEach(k => (k.checked = parent.checked)));
+        update();
+      });
+    </script>
+  </section>
+
+  </div><!-- /col -->
+  <div class="col">
+  <section>
+    <h2>Slot content (rich labels)</h2>
+    <div class="row">
+      <pic-toggle src="images/nvidia.svg" name="cpu" value="nvidia" size="64">
+        <strong>NVIDIA</strong> <small style="opacity:0.6">+20% perf</small>
+      </pic-toggle>
+      <pic-toggle src="images/via.svg" name="cpu" value="via" size="64" label-position="bottom">
+        <span style="color:#059669">VIA</span>
+      </pic-toggle>
+    </div>
+  </section>
+
+  <section>
+    <h2>Broken image (loads /nope.png) — emits "image-error" event</h2>
+    <div class="row">
+      <pic-toggle id="broken" src="/nope.png" label="This src 404s"></pic-toggle>
+    </div>
+    <pre id="broken-log">(waiting for image-error…)</pre>
+    <script>
+      document.getElementById('broken').addEventListener('image-error', () => {
+        document.getElementById('broken-log').textContent = 'image-error fired; data-image-error="true" is set on the inner wrapper (CSS can style it).';
+      });
+    </script>
+  </section>
+
+  <section>
+    <h2>Custom filters (no grayscale)</h2>
+    <div class="row">
+      <pic-toggle src="https://flagcdn.com/no.svg" label="Blur" style="--pt-inactive-filter: blur(2px)"></pic-toggle>
+      <pic-toggle src="https://flagcdn.com/no.svg" label="Sepia" style="--pt-inactive-filter: sepia(1)"></pic-toggle>
+      <pic-toggle src="https://flagcdn.com/no.svg" label="Hue-rotate" style="--pt-inactive-filter: hue-rotate(90deg); --pt-active-filter: drop-shadow(0 0 3px #0004)"></pic-toggle>
+      <pic-toggle src="https://flagcdn.com/no.svg" label="Dim only" style="--pt-inactive-filter: none; --pt-inactive-opacity: 0.3"></pic-toggle>
+    </div>
+  </section>
+
+  <section>
+    <h2>RTL (dir="rtl") — left/right swap automatically</h2>
+    <div class="row" dir="rtl" style="font-family: system-ui">
+      <pic-toggle src="images/antispam1.svg" label="يمين · Antispam 1" label-position="right" size="64"></pic-toggle>
+      <pic-toggle src="images/antispam2.svg" label="يسار · Antispam 2" label-position="left"  size="64"></pic-toggle>
+    </div>
+  </section>
+  </div><!-- /col -->
+  </div><!-- /layout -->
+
+  <script type="module">
+    import { createPicToggle } from '../src/pictoggle.js';
+
+    // Build a checkbox via the API and append it to the mount node.
+    const mount = document.getElementById('api-mount');
+    const control = createPicToggle({
+      src: 'https://flagcdn.com/no.svg',
+      label: 'Toggle me',
+      labelPosition: 'bottom',
+      size: 64,
+      checked: false,
+      attributes: { 'data-origin': 'api', title: 'built via createPicToggle()' },
+      onChange: (checked) => {
+        console.log('API checkbox changed:', checked);
+      },
+    });
+    mount.appendChild(control);
+
+    // Live-render the form state and intercept submit to show what the server
+    // would actually receive. Reset is handled natively by the browser +
+    // formResetCallback inside each <pic-toggle>.
+    const form = document.getElementById('demo-form');
+    const output = document.getElementById('form-output');
+    const render = (title) => {
+      const data = new FormData(form);
+      // FormData.getAll() preserves duplicates for repeated names like features=https,http.
+      const grouped = {};
+      for (const [k] of data.entries()) grouped[k] = data.getAll(k);
+      output.textContent = `${title}\n${JSON.stringify(grouped, null, 2)}`;
+    };
+    form.addEventListener('change', () => render('live FormData:'));
+    form.addEventListener('reset', () => setTimeout(() => render('after reset:'), 0));
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      render('submitted FormData:');
+    });
+    render('initial FormData:');
+  </script>
+</body>
+</html>

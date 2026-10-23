@@ -1,0 +1,10 @@
+examples/
+test/
+docs/
+.github/
+.gitignore
+.editorconfig
+.nvmrc
+CONTRIBUTING.md
+_browser_test_*.html
+*.log
