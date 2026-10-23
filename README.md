@@ -516,4 +516,4 @@ See [CHANGELOG.md](./CHANGELOG.md).
 
 ## License
 
-[MIT](./LICENSE) © pictoggle contributors
+[MIT](./LICENSE) © Mykhailo Kravtsov ([@Insider515](https://github.com/Insider515))
